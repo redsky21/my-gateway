@@ -13,27 +13,37 @@ spring:
     name: gateway-service
   cloud:
     gateway:
+#      discovery:
+#        locator:
+#          lower-case-service-id: true
+#          enabled: true
       routes:
-        - id: first-service
-          uri: lb://MY-FIRST-SERVICE
+#        - id: first-service
+#          uri: lb://MY-FIRST-SERVICE
+#          predicates:
+#            - Path=/first-service/**
+#          filters:
+#            #            - AddRequestHeader=first-request, first-request-header2
+#            #            - AddResponseHeader=first-response, first-response-header2
+#            - CustomFilter
+#
+#        - id: second-service
+#          uri: lb://MY-SECOND-SERVICE
+#          predicates:
+#            - Path=/second-service/**
+#          filters:
+#            - name: LoggingFilter
+#              args:
+#                baseMessage: HI, there.
+#                preLogger: true
+#                postLogger: true
+#
+#            - name: CustomFilter
+        - id: user-service
+          uri: lb://USER-SERVICE
           predicates:
-            - Path=/first-service/**
+            - Path=/user-service/**
           filters:
-            #            - AddRequestHeader=first-request, first-request-header2
-            #            - AddResponseHeader=first-response, first-response-header2
-            - CustomFilter
-
-        - id: second-service
-          uri: lb://MY-SECOND-SERVICE
-          predicates:
-            - Path=/second-service/**
-          filters:
-            - name: LoggingFilter
-              args:
-                baseMessage: HI, there.
-                preLogger: true
-                postLogger: true
-
             - name: CustomFilter
       default-filters:
         - name: GlobalFilter
