@@ -45,6 +45,18 @@ spring:
             - Path=/user-service/**
           filters:
             - name: CustomFilter
+        - id: user-service
+          uri: lb://CATALOG-SERVICE
+          predicates:
+            - Path=/catalog-service/**
+          filters:
+            - name: CustomFilter
+        - id: order-service
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/order-service/**
+          filters:
+            - name: CustomFilter
       default-filters:
         - name: GlobalFilter
           args:
