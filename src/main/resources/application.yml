@@ -101,8 +101,8 @@ spring:
     username: guest
     password: guest
 
-token:
-  secret: user_token
+#token:
+#  secret: user_token
 
 management:
   endpoints:
