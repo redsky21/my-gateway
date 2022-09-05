@@ -84,11 +84,20 @@ spring:
           filters:
             - name: CustomFilter
         - id: order-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/order-service/actuator/**
+            - Method=GET,POST
+          filters:
+            - RewritePath=/order-service/(?<segment>.*), /$\{segment}
+        - id: order-service
           uri: lb://ORDER-SERVICE
           predicates:
             - Path=/order-service/**
           filters:
             - name: CustomFilter
+
+
       default-filters:
         - name: GlobalFilter
           args:
